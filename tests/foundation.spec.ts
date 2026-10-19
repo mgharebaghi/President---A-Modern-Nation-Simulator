@@ -57,7 +57,8 @@ test('mobile view fits and landmark controls work', async ({ page }) => {
 test('night lighting follows the authoritative clock and remains paused with it', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Switch to English' }).click();
-  await page.getByRole('button', { name: '6 game hours / second' }).click();
+  // Use the normal clock: locator actionability on software WebGL may take
+  // seconds. A fast-forward clock can legitimately reach the next morning.
   await page.getByRole('button', { name: 'Resume', exact: true }).click();
   await page.waitForFunction(() => {
     const render = (window as unknown as { __presidentRender?: { hour: number; lights: number } }).__presidentRender;
@@ -65,6 +66,13 @@ test('night lighting follows the authoritative clock and remains paused with it'
   });
   await page.getByRole('button', { name: 'Pause', exact: true }).click();
   await expect(page.getByTestId('clock-status')).toHaveText('PAUSED');
-  await expect(page.getByTestId('simulation-time')).not.toHaveText('08:00');
-  await expect.poll(() => page.evaluate(() => (window as unknown as { __presidentRender: { lights: number } }).__presidentRender.lights)).toBeGreaterThan(2);
+  const paused = await page.evaluate(() => (window as unknown as { __presidentRender: { elapsedHours: number; hour: number; lights: number } }).__presidentRender);
+  expect(paused.elapsedHours).toBeGreaterThan(0);
+  await expect(page.getByTestId('simulation-time')).toHaveText(`${String(paused.hour).padStart(2, '0')}:00`);
+  // The stopped phase must match the actual stopped hour, not the earlier
+  // hour at which the automation first observed nighttime.
+  if (paused.hour >= 20 || paused.hour < 5) expect(paused.lights).toBeGreaterThan(2);
+  else if (paused.hour >= 8 && paused.hour <= 16) expect(paused.lights).toBe(0);
+  await page.waitForTimeout(500);
+  expect(await page.evaluate(() => (window as unknown as { __presidentRender: { elapsedHours: number } }).__presidentRender.elapsedHours)).toBe(paused.elapsedHours);
 });
