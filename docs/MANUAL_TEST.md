@@ -22,6 +22,7 @@ Open the exact address printed by Vite (normally `http://127.0.0.1:5173`). This 
 7. Open Settings and change quality. Low disables sun shadows and lowers resolution. Observe actual FPS/draw calls/triangles, without interpreting software-renderer results as GPU benchmarks.
 8. Open/close the guide and settings via buttons and Escape. Keyboard focus stays within an open modal and returns when closed.
 9. At 390px width, ensure no horizontal page scrolling. Inspect the mobile building panel and time controls.
+10. Visual feedback revision: zoom toward the offices and residences to inspect reflective glazing, tiled paving, balconies, door canopies and roof details. Orbit to see the continuous river banks and distant neighborhoods. At night, inspect the palace floodlighting and warm street pools. Confirm buildings still select correctly and quality/time/language controls work as before. This remains procedural, stylized realism rather than photographic asset fidelity.
 
 ## Limits
 

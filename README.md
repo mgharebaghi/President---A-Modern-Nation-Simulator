@@ -34,6 +34,7 @@ npm run preview              # serve the production build locally
 - Paused start on **1 January 2026, 08:00**, 1/6/24 game hours per second, hidden-tab suspension and a matching day/night cycle.
 - Persian RTL and English LTR throughout, including exact Persian/Gregorian date presentation, local numerals, guide, settings and building details. Language can change during play.
 - Low/medium/high graphics, live renderer statistics, local fonts and no paid API requirement.
+- Refined procedural materials, reflective glazing, balcony/roof details, clustered foliage, continuous surroundings and warm civic/street night lighting.
 - Independent worker kernel and serializable contracts, with a documented path to profile-driven Rust/WASM acceleration.
 
 ## Current limits
