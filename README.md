@@ -2,9 +2,9 @@
 
 **A modern nation & political strategy simulator · شبیه‌ساز حکمرانی و سیاست مدرن**
 
-PRESIDENT is a browser strategy game about governing a fictional modern country. Development is incremental: the current **phase 01 foundation** delivers an interactive 3D capital, bilingual interface and authoritative simulation clock. Economic and political gameplay follows in separately approved phases.
+PRESIDENT is a browser strategy game about governing a fictional modern country. Development is incremental: the current **phase 02** adds a playable treasury → power construction → energy capacity loop, local save/resume, an interactive 3D capital and a bilingual interface. Further economic and political systems follow in separately approved phases.
 
-![Darvan capital](docs/screenshots/capital-en.png)
+![Darvan power station](docs/screenshots/phase02-operational.png)
 
 ## Run locally
 
@@ -25,7 +25,7 @@ npm run build
 npm run preview              # serve the production build locally
 ```
 
-`npm run measure:render` measures the running development server with the default browser renderer. Use `npm run measure:render -- --software` for explicitly software-rendered diagnostics; on Windows, `npm run measure:render -- --hardware` requests D3D11 at a 1920×1080 viewport. Always check the recorded renderer rather than assuming hardware was used. Reports go under ignored `test-results/`; FPS is not a CI pass/fail gate.
+`npm run measure:render` starts a temporary server, measures with the default browser renderer, and closes its browser and server afterward. `node scripts/capture-preview.mjs --hardware` captures the actual UI with the same cleanup. Use `npm run measure:render -- --software` for explicitly software-rendered diagnostics; add `--plant` to measure the completed power station; on Windows, `npm run measure:render -- --hardware` requests D3D11 at a 1920×1080 viewport. Always check the recorded renderer rather than assuming hardware was used. Reports go under ignored `test-results/`; FPS is not a CI pass/fail gate.
 
 ## What works
 
@@ -37,9 +37,13 @@ npm run preview              # serve the production build locally
 - Refined procedural materials, reflective glazing, balcony/roof details, clustered foliage, continuous surroundings and warm civic/street night lighting.
 - Independent worker kernel and serializable contracts, with a documented path to profile-driven Rust/WASM acceleration.
 
+- Treasury transfers, a funded 168-hour power station, visible construction, real capacity effects and one versioned IndexedDB save slot. Open **Treasury & infrastructure** above the city. [Scenario rules and save contract](docs/PHASE_02.md).
+
+Automated tests own their temporary server and close it afterward. Do not run another server on port 5173 during `test:e2e`. Capture/measurement use port 5174. Close manually started `dev`/`preview`/watch sessions with Ctrl+C when finished.
+
 ## Current limits
 
-No economy, cabinet, diplomacy, elections, national map/selection, population simulation, save games or active traffic yet. Building categories are scene metadata, not functioning public services. Reload resets the clock; only language preference persists. Lighting changes by simulation hour and is not an astronomy model. Mobile UI is supported, but desktop browsers are the initial performance target. Browser software-renderer checks do not certify GPU performance. See the actual measurement report and known issues below.
+The economy is a small closed-account scenario with fixed tax/service schedules and fixed power demand. There is no production, macroeconomics, cabinet, diplomacy, elections, national map/selection, population simulation or active traffic yet. Landmark categories are scene metadata. Reload starts a new session; explicitly restore the local save to continue. Saving overwrites one browser-local slot; restore starts paused, with no offline progress. Lighting changes by simulation hour and is not an astronomy model. Mobile UI is supported, but desktop browsers are the initial performance target. Browser software-renderer checks do not certify GPU performance. See the actual measurement report and known issues below.
 
 ## Structure and engineering
 
@@ -69,6 +73,6 @@ GitHub Actions checks pull requests and main pushes, runs Chromium checks and up
 
 پس از نصب Node.js 24، در پوشهٔ پروژه `npm ci` و سپس `npm run dev -- --port 5173 --strictPort` را اجرا کنید. بازی به‌صورت پیش‌فرض فارسی و متوقف شروع می‌شود. دوربین را حرکت دهید، بناهای شاخص را انتخاب کنید و با ادامهٔ زمان و سرعت ۲۴× چرخهٔ روز و شب را ببینید. تغییر زبان از بالای صفحه و تنظیم کیفیت از تنظیمات در دسترس است.
 
-این نسخه فقط خروجی فاز اول است؛ سیستم‌های اقتصادی و سیاسی و ذخیرهٔ بازی هنوز ساخته نشده‌اند. طبق دستور جدید صاحب پروژه، پس از موفقیت بررسی‌های آخرین کامیت، فاز تکمیل‌شده Merge می‌شود؛ شروع فاز بعد همچنان مجوز جداگانه می‌خواهد. تأیید تست انسانی فقط براساس بازخورد واقعی ثبت می‌شود. اشکال‌ها را همراه مراحل بازتولید، مرورگر، تنظیم کیفیت، اندازهٔ صفحه و تصویر در PR یا گفتگو گزارش کنید.
+فاز دوم شامل خزانه، تراکنش‌های واقعی میان حساب‌ها، ساخت نیروگاه هفت‌روزه و ذخیرهٔ محلی است. از «نمایش خزانه و پروژه‌ها» پروژه را تأمین مالی کنید، زمان را ادامه دهید و افزایش ظرفیت از ۱۰۰ به ۱۸۰ مگاوات را پس از تکمیل ببینید. ذخیره و بازیابی در همان بخش است؛ بارگذاری مجدد نشست تازه می‌سازد و برای ادامه باید ذخیره را بازیابی کنید. سرورهای موقت تست و اندازه‌گیری خودکار بسته می‌شوند؛ اجرای دستی را با Ctrl+C ببندید. اقتصاد کلان و سیاست هنوز در فازهای آینده هستند. طبق دستور جدید صاحب پروژه، پس از موفقیت بررسی‌های آخرین کامیت، فاز تکمیل‌شده Merge می‌شود؛ شروع فاز بعد همچنان مجوز جداگانه می‌خواهد. تأیید تست انسانی فقط براساس بازخورد واقعی ثبت می‌شود. اشکال‌ها را همراه مراحل بازتولید، مرورگر، تنظیم کیفیت، اندازهٔ صفحه و تصویر در PR یا گفتگو گزارش کنید.
 
 No project-wide license has been selected by the owner. Bundled third-party licenses are preserved in `public/THIRD_PARTY_NOTICES.txt`.

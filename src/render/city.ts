@@ -1,3 +1,5 @@
+import type { PowerProject } from '../engine/types';
+import { POWER } from '../engine/kernel';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { buildings, type Building } from '../data/capital';
@@ -10,6 +12,11 @@ type Box = { x: number; y: number; z: number; w: number; h: number; d: number; c
 
 export class CapitalRenderer {
   private scene = new THREE.Scene();
+  private powerSite = new THREE.Group();
+  private powerStructure = new THREE.Group();
+  private scaffolding = new THREE.Group();
+  private projectStage = 'ready';
+  private projectProgress = 0;
   private camera = new THREE.PerspectiveCamera(40, 1, 0.5, 550);
   private renderer: THREE.WebGLRenderer;
   private controls: OrbitControls;
@@ -75,7 +82,7 @@ export class CapitalRenderer {
     this.controls.minPolarAngle = 0.18;
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.08;
-    this.controls.maxTargetRadius = 85;
+    this.controls.maxTargetRadius = 150;
     this.controls.listenToKeyEvents(this.canvas);
     this.controls.addEventListener('start', this.cancelFocus);
     this.sunlight.castShadow = true;
@@ -90,6 +97,7 @@ export class CapitalRenderer {
     this.buildCity();
     this.addContactShadows();
     this.batchStaticBoxes();
+    this.buildPowerSite();
     this.observer = new ResizeObserver(this.resize);
     this.observer.observe(host);
     this.resize();
@@ -417,6 +425,49 @@ export class CapitalRenderer {
     this.civicLights.forEach(light => { light.intensity = (1 - daylight) * 85; });
   }
 
+  private buildPowerSite() {
+    // East-bank industrial lot, served by the existing bridge. Shared box geometry;
+    // structures are created once and updated from the worker snapshot, never a second clock.
+    this.powerSite.position.set(112, 0, 36);
+    this.scene.add(this.powerSite);
+    const part = (parent: THREE.Group, x: number, y: number, z: number, w: number, h: number, d: number, color: string) => {
+      const mesh = new THREE.Mesh(this.cube, this.material(color));
+      mesh.position.set(x, y, z); mesh.scale.set(w, h, d); mesh.castShadow = true; mesh.receiveShadow = true; parent.add(mesh);
+    };
+    part(this.powerSite, 0, 0.1, 0, 30, 0.4, 25, '#a49a83');
+    part(this.powerSite, -10, 0.15, -19, 7, 0.3, 15, '#444b4a');
+    part(this.powerSite, -13, 0.15, -19, 20, 0.3, 7, '#444b4a');
+    for (const x of [-15, 15]) part(this.powerSite, x, 1.2, 0, 0.25, 2, 25, '#b7b9a4');
+    for (const z of [-12.5, 12.5]) part(this.powerSite, 0, 1.2, z, 30, 2, 0.25, '#b7b9a4');
+    this.powerSite.add(this.powerStructure, this.scaffolding);
+    part(this.powerStructure, 0, 4, 0, 22, 8, 13, '#929e99');
+    part(this.powerStructure, 0, 8.3, 0, 23, 0.6, 14, '#566867');
+    for (const x of [-6, 3]) {
+      part(this.powerStructure, x, 7, -4, 3, 14, 3, '#c8c4b6');
+      part(this.powerStructure, x, 14, -4, 3.2, 1.5, 3.2, '#b07755');
+      part(this.powerStructure, x, 2, 9, 5, 4, 4, '#6c8381');
+    }
+    for (let x = -8; x <= 8; x += 4) part(this.powerStructure, x, 4.5, 6.6, 2, 2, 0.12, '#4f7381');
+    for (const x of [-12, 12]) for (const z of [-8, 8]) part(this.scaffolding, x, 7, z, 0.35, 14, 0.35, '#c7a55f');
+    for (const y of [3, 7, 11]) for (const z of [-8, 8]) part(this.scaffolding, 0, y, z, 25, 0.3, 0.3, '#c7a55f');
+    part(this.scaffolding, -13, 10, -9, 1, 20, 1, '#d8b15e');
+    part(this.scaffolding, -4, 19, -9, 23, 0.5, 0.6, '#d8b15e');
+    this.powerStructure.visible = false; this.scaffolding.visible = false;
+  }
+
+  updateProject(project: PowerProject, elapsedHours: number) {
+    const started = project.startedAt !== null, complete = project.completedAt !== null;
+    this.projectProgress = started ? Math.min(1, (elapsedHours - project.startedAt!) / POWER.hours) : 0;
+    this.projectStage = complete ? 'operational' : started ? 'construction' : 'ready';
+    this.powerStructure.visible = started;
+    this.scaffolding.visible = started && !complete;
+    this.powerStructure.scale.y = complete ? 1 : 0.08 + this.projectProgress * 0.92;
+  }
+
+  focusProject() {
+    this.focused = { target: new THREE.Vector3(112, 3, 36), camera: new THREE.Vector3(150, 40, 84) };
+  }
+
   setQuality(quality: Quality) {
     this.quality = quality;
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, quality === 'low' ? 1 : quality === 'medium' ? 1.3 : 1.7));
@@ -508,7 +559,7 @@ export class CapitalRenderer {
   diagnostics() {
     const gl = this.renderer.getContext();
     const debug = gl.getExtension('WEBGL_debug_renderer_info');
-    return { elapsedHours: this.elapsedHours, hour: clockHour(this.elapsedHours), quality: this.quality, selected: this.selected,
+    return { project: { stage: this.projectStage, progress: this.projectProgress, structureVisible: this.powerStructure.visible, scaffoldingVisible: this.scaffolding.visible }, elapsedHours: this.elapsedHours, hour: clockHour(this.elapsedHours), quality: this.quality, selected: this.selected,
       camera: this.camera.position.toArray(), target: this.controls.target.toArray(),
       landmarks: buildings.slice(0, 3).map(building => {
         const point = new THREE.Vector3(building.x, building.height / 2, building.z).project(this.camera);

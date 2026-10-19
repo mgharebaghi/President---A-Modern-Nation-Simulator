@@ -2,38 +2,25 @@
 
 Updated: 2026-10-19 (Asia/Tehran).
 
-- Latest completed phase: phase 01 implementation is complete; merge is authorized conditional on successful latest-head checks. Consult PR #1 for live merge state.
-- Active approved phase: **01 — foundation**, authorized in chat on 2026-10-19. Rust may be used where measured speed/size benefits justify it.
-- Branch: `phase/01-foundation`; base: `main` at `f6e2391284ab59cf026b5650e69959e5213dda32`.
-- PR: [#1](https://github.com/mgharebaghi/President---A-Modern-Nation-Simulator/pull/1), opened as draft while documentation/CI are finalized. Consult the live PR for its current readiness state.
-- Latest related implementation commit: `6d8d2be` (phase 01 visual feedback and low-FPS camera easing); earlier test fix: `6ae006b`. Run `git log` for later documentation commits; a commit cannot embed its own SHA.
-- Local checks: lint, TypeScript, 28 unit tests, build and all 3 Chromium interaction scenarios pass. A concurrent software-renderer run exceeded the old 30-second per-test timeout; an isolated run with the documented 60-second budget passed all checks without removing assertions.
-- Hardware baseline: 60 FPS in all six samples per quality on RTX 3070 Laptop / D3D11 at a 1920×1080 browser viewport, 1412×743 scene canvas, static daytime. Initial page JS heap ~19–22 MiB; refined scene ~24–26 MiB. Integrated GPU and total GPU/process memory unmeasured. Full before/after method and raw data: `docs/PERFORMANCE.md`.
-- CI: PR [#1 checks](https://github.com/mgharebaghi/President---A-Modern-Nation-Simulator/pull/1/checks) are the live reference. Run 39277699149 passed lint/typecheck/28 unit tests/build and the first two browser scenarios, then exposed a race in the night test: slow software-renderer actionability let a 6× clock reach morning before Pause. The scenario now runs at normal speed, observes night explicitly, and verifies the stopped hour/light state plus no further advancement, rather than assuming Pause happened in the earlier observed hour. Final-head rerun is pending at this documentation checkpoint; readiness is recorded on the PR after verification, avoiding a self-updating status-commit loop.
-- Human feedback: owner requested more natural graphics, then responded positively and explicitly authorized merging every completed phase when checks pass (2026-10-19). That standing approval supersedes the original per-merge confirmation rule. Do not invent additional human test coverage. Starting phase 02 is still not authorized.
+- Phase 01 completed and merged in [PR #1](https://github.com/mgharebaghi/President---A-Modern-Nation-Simulator/pull/1), merge commit `539b7c85c8e7d800cd37aefa6509fadb7f18bd03`.
+- Latest implemented / approved phase: **02 — first playable loop**, explicitly authorized by the owner on 2026-10-19. Later phases need separate authorization.
+- Branch: `phase/02-treasury-power-save`, based on the phase-01 merge above. Latest code commit at this checkpoint: `f40bb31`; see Git history for documentation/validation commits.
+- Implemented: conserved treasury transfers, one funded 168-hour power project, snapshot-driven construction/completion visuals, capacity effects, account balances and recent transactions, one IndexedDB save slot with versioned deterministic validation and safe paused restore. Every feature is available in English/Persian RTL.
+- Local checks: lint, TypeScript, **44 unit tests**, production build pass. All **5 Chromium scenarios** passed; the new scenarios cover funding, construction, capacity, save/refresh/restore, corrupt-save rejection, denied storage and Persian mobile fit. A subsequent edge hardening change adds the terminal horizon guard and closes blocked/failed database connections; latest-head CI is the final verification reference.
+- Visual QA: actual screenshots of management, construction, the operational station and Persian mobile are in `docs/screenshots/phase02-*.png`. Human acceptance of phase 02 has not yet been reported; automated verification is not human approval.
+- Hardware measurement: completed plant, RTX 3070 Laptop / actual D3D11, 1920×1080 viewport, 1412×633 scene, six samples per quality: 60 FPS, 16.7ms mean interval; high 138 draw calls / 96,862 triangles, page heap ~23–25 MiB across qualities. Raw data and limits: [performance report](PERFORMANCE.md).
+- Process rule: the owner requires task-owned servers/Node/browser processes to close after use. Playwright owns its strict-port server; diagnostic scripts own and close a temporary server/browser. After the first browser suite and screenshot run, no project-owned Node process or listening preview remained. Final audit is recorded in the PR/handoff after all validation.
+- PR/CI/merge: consult the phase-02 PR linked from this branch on GitHub for live status. The owner has already authorized merging completed phases after successful latest-head checks; no new merge confirmation is needed.
 
-## Implemented
+## Current limits
 
-Independent worker clock and contracts, Gregorian/Persian calendar, English/Persian interface, procedural capital district, camera and selection, day/night, quality settings, actual render statistics, guide, error messages and cleanup. No Rust runtime shipped because phase 01 has no heavy simulation workload.
+- Scenario values are fictional. Tax and services are fixed schedules; private funds are finite. No production, debt, inflation, population, cabinet, diplomacy or elections yet.
+- Energy is fixed demand and installed capacity, with an upkeep transfer. Reliability, delivered electricity and service-quality effects are not simulated.
+- Recent ledger is capped at 30 entries; cumulative flows and all balances remain available. The scenario stops at a bounded 100-year horizon.
+- One local save slot per browser origin. No offline progress, autosave, cloud sync or multiple slots. Refresh starts a fresh session; restore explicitly to continue.
+- Renderer remains procedural/stylized. Chromium is the automated target. Software-renderer behavior checks do not certify GPU performance; integrated GPU and total process/GPU memory remain unmeasured.
+- No public hosting or online preview is provisioned. A local Vite address and CI artifacts are not a deployment.
 
-Visual feedback revision: deterministic local surface/sky textures, environment reflections, roughness/metalness, balconies/entrances/parapets, clustered foliage, both river banks/terrain/surrounding blocks, PCF/contact shadows, street light pools and two unshadowed palace lamps. GPU remeasurement: 60 FPS in six static daytime samples per quality, 125 high-quality draw calls / 96,706 triangles, ~24–26 MiB page JS heap. See `docs/PERFORMANCE.md` for both before/after data and limitations. Updated day/night/mobile screenshots are in `docs/screenshots/`.
+## Continue
 
-Visual revision checks: lint/typecheck/28 unit tests/build pass. Mobile and night browser scenarios pass. A final software-renderer run exposed camera reset taking too long because presentation delta was capped at 100ms; changed the easing bound to one second of real elapsed time and reran the full capital/camera/bilingual/clock/quality scenario successfully (32.7s). No assertion was removed or timeout increased for that fix. CI must still be checked on the latest pushed visual-revision head.
-
-## Open work at this checkpoint
-
-Push the standing-merge-policy update, inspect CI on the latest head, mark PR ready and merge that checked head once all relevant checks pass; verify remote/local main afterward. Local Vite preview was verified at `http://127.0.0.1:5173`; restart with the README command if the session has ended. Do not start phase 02 without separate owner authorization. Live PR/checks remain the source of truth for completion.
-
-## Known limitations
-
-- Economy/politics/national selection/save games/active traffic are outside phase 01.
-- Save state is not persisted; language alone is stored locally. A refresh restarts the scenario.
-- Sun cycle is hourly and stylized. Background catch-up is intentionally disabled.
-- CI uses SwiftShader; it verifies behavior, not hardware FPS. Hardware targets are aspirational until measured on the stated device classes.
-- No online preview is provisioned. A local Vite session or CI build artifact is not a published URL.
-- Chromium is the automated browser target in this phase. Firefox/WebKit and owner device acceptance remain future checks.
-- Asset model is procedural; final high-fidelity asset work will accompany approved scene expansion.
-
-## Continuation
-
-Verify `git status`, current branch, `git log`, PR state, current checks and new owner feedback. See architecture, roadmap, performance report and manual test guide. Standing approval now covers merging completed phases after successful latest-head checks; do not ask for merge approval again unless the owner changes this instruction. Verify `main` after merge and request separate phase 02 authorization before beginning it.
+Inspect actual Git/PR/check state first. Read [phase-02 rules and save contract](PHASE_02.md), [architecture](ARCHITECTURE.md), [manual tests](MANUAL_TEST.md) and [roadmap](ROADMAP.md). Verify latest-head CI and merge, then synchronize local main and close all task-owned processes. Do not begin phase 03 without owner authorization.

@@ -31,3 +31,14 @@ This is a foundation checkpoint, not the finished game. Only the fictional Darva
 ## Feedback
 
 Report through the PR or this chat: browser/version, OS, screen size, quality setting, selected building, game date/speed, reproduction steps, expected/actual behavior, console error if any, and screenshot/video when useful. Human review remains pending until the owner actually tests and responds.
+
+## Phase 02 acceptance
+
+1. Run the README dev command, open the local address, and open Treasury & infrastructure. Start paused: 50,000,000 credits, 100/140 MW. Fund the plant: treasury 26,000,000, contractor 24,000,000. Funding again is disabled.
+2. View the construction site. Resume at 24×: after 168 simulation hours (about seven real seconds without stalls), capacity becomes 180/140 MW, structure is complete and scaffolding disappears. Pausing/hidden tabs halt project time.
+3. Open accounts and the transfer history. First midnight is 16 simulation hours after start. Daily taxes/services move cash between named accounts; the combined cash stays 250,000,000. Upkeep starts at a midnight on/after completion.
+4. Save while partway through construction, refresh, and restore. Verify the same date, cash and remaining construction time; it starts paused. Resume to completion, save again, refresh and restore: capacity remains 180 MW, with no duplicate construction charge. Saving replaces the single local slot.
+5. Switch English/Persian, inspect both numeral/date formats and the mobile layout. Try denying site storage: saving/restoring shows an error and gameplay remains usable.
+6. Stop the manually started server with Ctrl+C. One-shot test/capture/measurement commands close their owned server/browser; verify no task-owned process remains.
+
+No human acceptance is implied by automated success. Report actual observed behavior, browser, quality, language and reproduction steps.
