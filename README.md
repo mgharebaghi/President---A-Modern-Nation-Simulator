@@ -63,12 +63,12 @@ The clock is the single authority. UI sends commands; the renderer consumes snap
 - [Asset sources and licensing](docs/ASSETS.md)
 - [Original Persian product brief](docs/PRODUCT_BRIEF.fa.md)
 
-GitHub Actions checks pull requests and main pushes, runs Chromium checks and uploads production assets and a browser report. Phase branches are checked through their PRs to avoid duplicate push/PR runs. A successful artifact upload is not an online deployment. Each phase has its own branch and PR. **Merge and starting the next phase require separate explicit owner approval.**
+GitHub Actions checks pull requests and main pushes, runs Chromium checks and uploads production assets and a browser report. Phase branches are checked through their PRs to avoid duplicate push/PR runs. A successful artifact upload is not an online deployment. Each phase has its own branch and PR. **The owner has authorized merging completed phases after successful latest-head checks. Starting each new phase still requires separate explicit owner approval.** This 2026-10-19 instruction supersedes the original per-merge confirmation rule in the historical product brief.
 
 ## راه‌اندازی و بررسی فارسی
 
 پس از نصب Node.js 24، در پوشهٔ پروژه `npm ci` و سپس `npm run dev -- --port 5173 --strictPort` را اجرا کنید. بازی به‌صورت پیش‌فرض فارسی و متوقف شروع می‌شود. دوربین را حرکت دهید، بناهای شاخص را انتخاب کنید و با ادامهٔ زمان و سرعت ۲۴× چرخهٔ روز و شب را ببینید. تغییر زبان از بالای صفحه و تنظیم کیفیت از تنظیمات در دسترس است.
 
-این نسخه فقط خروجی فاز اول است؛ سیستم‌های اقتصادی و سیاسی و ذخیرهٔ بازی هنوز ساخته نشده‌اند. تست انسانی و Merge تا تأیید صریح صاحب پروژه باز می‌مانند. اشکال‌ها را همراه مراحل بازتولید، مرورگر، تنظیم کیفیت، اندازهٔ صفحه و تصویر در PR یا گفتگو گزارش کنید.
+این نسخه فقط خروجی فاز اول است؛ سیستم‌های اقتصادی و سیاسی و ذخیرهٔ بازی هنوز ساخته نشده‌اند. طبق دستور جدید صاحب پروژه، پس از موفقیت بررسی‌های آخرین کامیت، فاز تکمیل‌شده Merge می‌شود؛ شروع فاز بعد همچنان مجوز جداگانه می‌خواهد. تأیید تست انسانی فقط براساس بازخورد واقعی ثبت می‌شود. اشکال‌ها را همراه مراحل بازتولید، مرورگر، تنظیم کیفیت، اندازهٔ صفحه و تصویر در PR یا گفتگو گزارش کنید.
 
 No project-wide license has been selected by the owner. Bundled third-party licenses are preserved in `public/THIRD_PARTY_NOTICES.txt`.

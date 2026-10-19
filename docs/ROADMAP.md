@@ -1,6 +1,6 @@
 # Development roadmap
 
-The owner approved phase 01 only on 2026-10-19, with Rust/WASM allowed where evidence justifies it. Each phase requires its own branch, small commits, PR, CI and manual test instructions. Merge always requires explicit owner approval. Approval for one phase never authorizes the next. Scope expansion and expensive architecture changes require discussion.
+The owner approved phase 01 only on 2026-10-19, with Rust/WASM allowed where evidence justifies it. Each phase requires its own branch, small commits, PR, CI and manual test instructions. The owner's later 2026-10-19 instruction grants standing approval to merge completed phases after successful latest-head checks, superseding the original per-merge confirmation requirement. Approval for one phase never authorizes starting the next. Scope expansion and expensive architecture changes require discussion. Record human feedback truthfully; passing CI is not evidence that a human test occurred.
 
 | Phase | Deliverable / exit condition |
 | --- | --- |
