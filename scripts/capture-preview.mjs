@@ -1,7 +1,8 @@
 import { chromium } from 'playwright';
 import { mkdir } from 'node:fs/promises';
 
-const browser = await chromium.launch({ headless: true, args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+const hardware = process.argv.includes('--hardware');
+const browser = await chromium.launch({ headless: true, args: hardware ? ['--use-angle=d3d11', '--enable-gpu', '--ignore-gpu-blocklist'] : ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
 try {
   await mkdir('docs/screenshots', { recursive: true });
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
