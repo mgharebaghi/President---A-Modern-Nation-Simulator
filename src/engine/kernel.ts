@@ -50,6 +50,7 @@ export class TypeScriptKernel implements SimulationKernel {
   }
   command(command: unknown): SimulationEvent[] {
     if (!validCommand(command)) throw new TypeError('Invalid command');
+    if (command.type === 'set-paused' && !command.paused && this.state.elapsedHours === MAX_HOURS) throw new RangeError('Scenario complete');
     if (command.type === 'build-power') {
       if (this.state.power.startedAt !== null || this.state.finance.accounts.treasury < POWER.cost || this.state.elapsedHours + POWER.hours > MAX_HOURS) throw new RangeError('Cannot fund project');
       transfer(this.state.finance, this.state.elapsedHours, 'construction', POWER.cost);

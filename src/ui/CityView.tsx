@@ -1,13 +1,14 @@
+import type { PowerProject } from '../engine/types';
 import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { CapitalRenderer, type Quality, type RenderStats } from '../render/city';
 
-export interface CameraActions { reset(): void; zoom(factor: number): void; focus(id: string): void }
+export interface CameraActions { reset(): void; zoom(factor: number): void; focus(id: string): void; focusProject(): void }
 interface Props {
-  elapsedHours: number; selected: string | null; quality: Quality; label: string;
+  elapsedHours: number; project: PowerProject; selected: string | null; quality: Quality; label: string;
   onSelect(id: string): void; onStats(stats: RenderStats): void; onFailure(): void; onReady(): void;
 }
 
-const CityView = forwardRef<CameraActions, Props>(function CityView({ elapsedHours, selected, quality, label, onSelect, onStats, onFailure, onReady }, ref) {
+const CityView = forwardRef<CameraActions, Props>(function CityView({ elapsedHours, project, selected, quality, label, onSelect, onStats, onFailure, onReady }, ref) {
   const host = useRef<HTMLDivElement>(null);
   const renderer = useRef<CapitalRenderer | null>(null);
   useEffect(() => {
@@ -17,7 +18,7 @@ const CityView = forwardRef<CameraActions, Props>(function CityView({ elapsedHou
     } catch { onFailure(); }
     return () => { renderer.current?.dispose(); renderer.current = null; };
   }, [onSelect, onStats, onFailure, onReady]);
-  useEffect(() => { renderer.current?.updateTime(elapsedHours); }, [elapsedHours]);
+  useEffect(() => { renderer.current?.updateTime(elapsedHours); renderer.current?.updateProject(project, elapsedHours); }, [elapsedHours, project]);
   useEffect(() => { renderer.current?.select(selected); }, [selected]);
   useEffect(() => { renderer.current?.setQuality(quality); }, [quality]);
   useEffect(() => {
@@ -28,7 +29,7 @@ const CityView = forwardRef<CameraActions, Props>(function CityView({ elapsedHou
     }
   }, []);
   useImperativeHandle(ref, () => ({
-    reset: () => renderer.current?.reset(), zoom: factor => renderer.current?.zoom(factor), focus: id => renderer.current?.focus(id),
+    reset: () => renderer.current?.reset(), zoom: factor => renderer.current?.zoom(factor), focus: id => renderer.current?.focus(id), focusProject: () => renderer.current?.focusProject(),
   }), []);
   useEffect(() => { host.current?.querySelector('canvas')?.setAttribute('aria-label', label); }, [label]);
   return <div className="city-canvas" ref={host} role="region" aria-label={label} data-testid="city-view" />;

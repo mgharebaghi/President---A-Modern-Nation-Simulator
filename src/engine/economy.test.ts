@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ECONOMY, energyCapacity, POWER, powerProgress, TypeScriptKernel, validateSave } from './kernel';
+import { ECONOMY, energyCapacity, MAX_HOURS, POWER, powerProgress, TypeScriptKernel, validateSave } from './kernel';
 import type { SaveGame } from './types';
 function running() { const k = new TypeScriptKernel(); k.command({ type: 'set-paused', paused: false }); return k; }
 function money(k: TypeScriptKernel) { return k.snapshot().finance; }
@@ -31,6 +31,17 @@ describe('treasury and construction', () => {
     expect(money(k).unpaid).toBeGreaterThan(0); expect(money(k).ledger).toHaveLength(30);
     expect(Object.values(money(k).accounts).every(v => v >= 0)).toBe(true); expect(total(k)).toBe(250_000_000);
     const before = k.snapshot(); expect(() => k.command({ type: 'build-power' })).toThrow(); expect(k.snapshot()).toEqual(before);
+  });
+  it('settles upkeep when completion coincides with midnight', () => {
+    const k = running(); k.advance(16); k.command({ type: 'build-power' }); k.advance(168);
+    expect(k.snapshot().power.completedAt).toBe(184); expect(money(k).accounts.utility).toBe(20_000);
+    expect(total(k)).toBe(250_000_000);
+  });
+  it('stops at the bounded horizon and rejects further resume', () => {
+    const k = running(); k.advance(MAX_HOURS + 20);
+    expect(k.snapshot().elapsedHours).toBe(MAX_HOURS); expect(k.snapshot().paused).toBe(true);
+    expect(k.save().pendingHours).toBe(0); expect(() => k.command({ type: 'set-paused', paused: false })).toThrow();
+    expect(total(k)).toBe(250_000_000);
   });
   it('keeps nested snapshots detached', () => {
     const k = running(); const copy = k.snapshot(); copy.finance.accounts.treasury = 0; copy.power.startedAt = 0;

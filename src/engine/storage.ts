@@ -6,17 +6,20 @@ const DB = 'president-saves';
 async function database(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB, 1);
+    let blocked = false;
     request.onupgradeneeded = () => request.result.createObjectStore('slots');
     request.onerror = () => reject(request.error);
-    request.onblocked = () => reject(new Error('Storage blocked'));
-    request.onsuccess = () => { request.result.onversionchange = () => request.result.close(); resolve(request.result); };
+    request.onblocked = () => { blocked = true; reject(new Error('Storage blocked')); };
+    request.onsuccess = () => { if (blocked) { request.result.close(); return; } request.result.onversionchange = () => request.result.close(); resolve(request.result); };
   });
 }
 async function transaction<T>(mode: IDBTransactionMode, action: (store: IDBObjectStore) => IDBRequest<T>): Promise<T> {
   const db = await database();
   return new Promise<T>((resolve, reject) => {
-    const tx = db.transaction('slots', mode);
-    const request = action(tx.objectStore('slots'));
+    let tx: IDBTransaction;
+    let request: IDBRequest<T>;
+    try { tx = db.transaction('slots', mode); request = action(tx.objectStore('slots')); }
+    catch (error) { db.close(); reject(error); return; }
     tx.oncomplete = () => { db.close(); resolve(request.result); };
     tx.onerror = tx.onabort = () => { db.close(); reject(tx.error ?? new Error('Storage failed')); };
   });

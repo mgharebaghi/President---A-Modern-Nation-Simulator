@@ -1,8 +1,9 @@
+import { managementEn, managementFa } from './management';
 export type Language = 'fa' | 'en';
 const en = {
   republic: 'REPUBLIC OF MEHRAN', capital: 'Darvan', capitalSub: 'THE CAPITAL DISTRICT',
   city: 'Capital', settings: 'Settings', guide: 'Field guide', close: 'Close',
-  foundation: 'FOUNDATION · 01', build: 'A nation begins here.',
+  build: 'A nation begins here.',
   welcome: 'Explore the capital. Watch a new day unfold.',
   district: 'CIVIC QUARTER', districtSub: 'Darvan, Republic of Mehran',
   live: 'CITY VIEW', pause: 'Pause', play: 'Resume', paused: 'PAUSED', running: 'LIVE', suspended: 'PAUSED · TAB HIDDEN',
@@ -20,7 +21,7 @@ const en = {
   hospitalDesc: 'The capital district’s central healthcare campus.',
   universityDesc: 'Teaching buildings around a landscaped university court.',
   height: 'Height', meters: 'm', footprint: 'Footprint', squareMeters: 'm²',
-  phaseNote: 'Phase 01 · City & time', phaseDetail: 'This first development build covers the capital, camera and calendar. National management arrives in later phases.',
+  
   visualNote: 'Buildings are scene landmarks. Services and population are not simulated in this phase.',
   language: 'Language', languageDesc: 'Change language at any time.',
   quality: 'Graphics quality', low: 'Low', medium: 'Medium', high: 'High',
@@ -33,14 +34,15 @@ const en = {
   guideCamera: 'Move around', guideCameraText: 'Drag with the left mouse button to orbit, right-drag to pan, or use the scroll wheel to zoom. Touch: one finger orbits; two fingers pan and zoom.',
   guideSelect: 'Meet the city', guideSelectText: 'Click a building for its details. Landmark buttons also select a building; Focus moves the camera to it.',
   guideTime: 'Set the pace', guideTimeText: 'Resume the clock, then choose 1, 6 or 24 game hours per second. The sun, sky and city lights follow the same clock. A hidden tab pauses automatically.',
-  guideLimits: 'Development checkpoint', guideLimitsText: 'This build starts paused on 1 January 2026 at 08:00. Reloading starts again. Save games, policy decisions and economic simulation are scheduled for later phases.',
+  guideLimits: 'Development checkpoint', 
   north: 'N', viewLabel: 'Interactive three-dimensional view of Darvan', expand: 'Open details',
+  ...managementEn,
 } as const;
 export type MessageKey = keyof typeof en;
 const fa: Record<MessageKey, string> = {
   republic: 'جمهوری مهران', capital: 'داروان', capitalSub: 'منطقهٔ پایتخت',
   city: 'پایتخت', settings: 'تنظیمات', guide: 'راهنما', close: 'بستن',
-  foundation: 'بنیان‌گذاری · ۰۱', build: 'آغاز سرنوشت یک ملت',
+  build: 'آغاز سرنوشت یک ملت',
   welcome: 'پایتخت را کشف کنید؛ طلوع روزی تازه را ببینید.',
   district: 'محلهٔ مدنی', districtSub: 'داروان، جمهوری مهران',
   live: 'نمای شهر', pause: 'توقف', play: 'ادامه', paused: 'متوقف', running: 'در جریان', suspended: 'متوقف · زبانهٔ پنهان',
@@ -58,7 +60,7 @@ const fa: Record<MessageKey, string> = {
   hospitalDesc: 'پردیس اصلی خدمات درمانی منطقهٔ پایتخت.',
   universityDesc: 'ساختمان‌های آموزشی پیرامون حیاط سبز دانشگاه.',
   height: 'ارتفاع', meters: 'متر', footprint: 'سطح اشغال', squareMeters: 'متر مربع',
-  phaseNote: 'فاز ۰۱ · شهر و زمان', phaseDetail: 'این نسخهٔ اولیه شامل پایتخت، دوربین و تقویم است. مدیریت کشور در فازهای بعد اضافه می‌شود.',
+  
   visualNote: 'ساختمان‌ها عناصر محیط شهر هستند. خدمات و جمعیت در این فاز شبیه‌سازی نمی‌شوند.',
   language: 'زبان', languageDesc: 'زبان را در هر زمان تغییر دهید.',
   quality: 'کیفیت گرافیک', low: 'پایین', medium: 'متوسط', high: 'بالا',
@@ -70,8 +72,9 @@ const fa: Record<MessageKey, string> = {
   guideCamera: 'حرکت در شهر', guideCameraText: 'با دکمهٔ چپ بکشید تا دوربین بچرخد؛ با دکمهٔ راست جابه‌جا شوید و با اسکرول بزرگ‌نمایی کنید. در نمایشگر لمسی، یک انگشت برای چرخش و دو انگشت برای جابه‌جایی و بزرگ‌نمایی است.',
   guideSelect: 'شناخت شهر', guideSelectText: 'روی ساختمان کلیک کنید تا مشخصاتش را ببینید. دکمه‌های بناهای شاخص نیز ساختمان را انتخاب می‌کنند؛ دکمهٔ تمرکز، دوربین را به آن نزدیک می‌کند.',
   guideTime: 'کنترل آهنگ زمان', guideTimeText: 'زمان را ادامه دهید و سرعت ۱، ۶ یا ۲۴ ساعت بازی در ثانیه را انتخاب کنید. خورشید، آسمان و چراغ‌های شهر از همین ساعت پیروی می‌کنند. با پنهان‌شدن زبانه زمان خودکار متوقف می‌شود.',
-  guideLimits: 'ایستگاه توسعه', guideLimitsText: 'بازی در ساعت ۸ صبح ۱ ژانویهٔ ۲۰۲۶ و به‌صورت متوقف شروع می‌شود. بارگذاری مجدد، بازی را از ابتدا آغاز می‌کند. ذخیره، سیاست‌گذاری و اقتصاد در فازهای بعد اضافه می‌شوند.',
+  guideLimits: 'ایستگاه توسعه', 
   north: 'ش', viewLabel: 'نمای تعاملی سه‌بعدی شهر داروان', expand: 'نمایش مشخصات',
+  ...managementFa,
 };
 export function translator(language: Language): (key: MessageKey) => string {
   return (key) => (language === 'fa' ? fa : en)[key];

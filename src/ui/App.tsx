@@ -1,3 +1,4 @@
+import { MAX_HOURS } from '../engine/kernel';
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { buildings } from '../data/capital';
 import { clockHour, simulationDate } from '../engine/calendar';
@@ -6,6 +7,7 @@ import { formatDate, formatNumber, formatTime } from '../i18n/format';
 import { translator, type Language, type MessageKey } from '../i18n/messages';
 import type { Quality, RenderStats } from '../render/city';
 import type { CameraActions } from './CityView';
+import { Management } from './Management';
 import { Icon } from './Icon';
 import { useSimulation } from './useSimulation';
 
@@ -26,7 +28,7 @@ export default function App() {
   const [renderError, setRenderError] = useState(false);
   const [sceneReady, setSceneReady] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
-  const { state: world, command, ready, error } = useSimulation();
+  const { state: world, command, ready, error, commandError, request } = useSimulation();
   const camera = useRef<CameraActions>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const t = translator(language);
@@ -66,16 +68,18 @@ export default function App() {
       <div className="rail-divider" />
       <button className={`rail-item ${panel === 'guide' ? 'active' : ''}`} onClick={() => setPanel('guide')} aria-label={t('guide')} title={t('guide')}><Icon name="guide" size={22} /><span>{t('guide')}</span></button>
       <button className={`rail-item rail-bottom ${panel === 'settings' ? 'active' : ''}`} onClick={() => setPanel('settings')} aria-label={t('settings')} title={t('settings')}><Icon name="settings" size={22} /><span>{t('settings')}</span></button>
-      <span className="rail-version" dir="ltr">v0.1</span>
+      <span className="rail-version" dir="ltr">v0.2</span>
     </nav>
 
     <main id="capital" className="main">
       <section className="intro"><div><p className="eyebrow"><span className="gold-line" />{t('capitalSub')}</p><h1>{t('build')}</h1><p className="intro-sub">{t('welcome')}</p></div><button className="text-button" onClick={() => setPanel('guide')}>{t('guide')}<Icon name="arrow" size={18} /></button></section>
 
+      <Management world={world} language={language} disabled={!ready || error} commandError={commandError} command={command} request={request} focus={() => { camera.current?.focusProject(); document.querySelector('.viewport')?.scrollIntoView({ block: 'center', behavior: 'smooth' }); }} />
+
       <div className="city-layout">
         <section className="viewport" aria-label={t('live')}>
           <Suspense fallback={<div className="scene-loading">{t('loading')}</div>}>
-            <CityView ref={camera} elapsedHours={world.elapsedHours} selected={selected} quality={quality} label={t('viewLabel')} onSelect={onSelect} onStats={setStats} onFailure={onFailure} onReady={onReady} />
+            <CityView ref={camera} elapsedHours={world.elapsedHours} project={world.power} selected={selected} quality={quality} label={t('viewLabel')} onSelect={onSelect} onStats={setStats} onFailure={onFailure} onReady={onReady} />
           </Suspense>
           {!sceneReady && !renderError && <div className="scene-loading">{t('loading')}</div>}
           {renderError && <div className="scene-error" role="alert"><Icon name="city" size={36} /><p>{t('rendererError')}</p><button className="primary-button" onClick={() => location.reload()}>{t('reload')}</button></div>}
@@ -108,7 +112,7 @@ export default function App() {
       <section className="timebar" aria-label={t('date')}>
         <div className="date-block"><span className="calendar-icon"><Icon name={period === 'night' ? 'moon' : 'sun'} size={22} /></span><div><span className="eyebrow">{t('date')}</span><strong data-testid="simulation-date">{formatDate(date, language)}</strong></div></div>
         <div className="clock-block"><strong dir="ltr" data-testid="simulation-time">{formatTime(date, language)}</strong><span>{t(period)}</span></div>
-        <div className="time-controls"><button className="play-button" onClick={() => command({ type: 'set-paused', paused: !world.paused })} aria-label={world.paused ? t('play') : t('pause')} disabled={!ready || error}><Icon name={world.paused ? 'play' : 'pause'} size={21} /></button>
+        <div className="time-controls"><button className="play-button" onClick={() => command({ type: 'set-paused', paused: !world.paused })} aria-label={world.paused ? t('play') : t('pause')} disabled={!ready || error || world.elapsedHours === MAX_HOURS}><Icon name={world.paused ? 'play' : 'pause'} size={21} /></button>
           <div className="speed-buttons" role="group" aria-label={t('speed')}>{([1, 6, 24] as GameSpeed[]).map(speed => <button key={speed} onClick={() => command({ type: 'set-speed', speed })} aria-pressed={world.speed === speed} aria-label={`${number(speed)} ${t('hoursPerSecond')}`} className={world.speed === speed ? 'chosen' : ''} disabled={!ready || error}><bdi>{number(speed)}×</bdi></button>)}</div>
         </div>
         <div className={`clock-status ${world.paused || world.suspended ? '' : 'is-running'}`} data-testid="clock-status"><i />{t(world.suspended ? 'suspended' : world.paused ? 'paused' : 'running')}</div>
