@@ -9,7 +9,7 @@ Updated: 2026-10-19 (Asia/Tehran).
 - Latest related implementation/test commit: `ed27298`, after `218975e` (capital) and `3b1c858` (engine). Run `git log` for later documentation commits; a commit cannot embed its own SHA.
 - Local checks: lint, TypeScript, 28 unit tests, build and all 3 Chromium interaction scenarios pass. A concurrent software-renderer run exceeded the old 30-second per-test timeout; an isolated run with the documented 60-second budget passed all checks without removing assertions.
 - Hardware baseline: 60 FPS in all six samples per quality on RTX 3070 Laptop / D3D11 at a 1920×1080 browser viewport, 1412×743 scene canvas, static daytime. Page JS heap ~19–22 MiB. Integrated GPU and total GPU/process memory unmeasured. Full method and raw data: `docs/PERFORMANCE.md`.
-- CI: initial Actions run [39277244573](https://github.com/mgharebaghi/President---A-Modern-Nation-Simulator/actions/runs/39277244573) was in progress at this documentation checkpoint. Inspect checks on the final PR head; do not infer later results from this status file.
+- CI: PR [#1 checks](https://github.com/mgharebaghi/President---A-Modern-Nation-Simulator/pull/1/checks) are the live reference. Earlier runs can be cancelled when a newer head is pushed. Final-head CI is pending at this documentation checkpoint; readiness is recorded on the PR after verification, avoiding a self-updating status-commit loop.
 - Human feedback: phase approval only; **no human playtest acceptance or merge approval received**.
 
 ## Implemented

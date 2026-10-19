@@ -62,7 +62,7 @@ The clock is the single authority. UI sends commands; the renderer consumes snap
 - [Asset sources and licensing](docs/ASSETS.md)
 - [Original Persian product brief](docs/PRODUCT_BRIEF.fa.md)
 
-GitHub Actions checks pull requests and phase/main pushes, runs Chromium checks and uploads production assets and a browser report. A successful artifact upload is not an online deployment. Each phase has its own branch and PR. **Merge and starting the next phase require separate explicit owner approval.**
+GitHub Actions checks pull requests and main pushes, runs Chromium checks and uploads production assets and a browser report. Phase branches are checked through their PRs to avoid duplicate push/PR runs. A successful artifact upload is not an online deployment. Each phase has its own branch and PR. **Merge and starting the next phase require separate explicit owner approval.**
 
 ## راه‌اندازی و بررسی فارسی
 
