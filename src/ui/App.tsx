@@ -74,7 +74,7 @@ export default function App() {
     <main id="capital" className="main">
       <section className="intro"><div><p className="eyebrow"><span className="gold-line" />{t('capitalSub')}</p><h1>{t('build')}</h1><p className="intro-sub">{t('welcome')}</p></div><button className="text-button" onClick={() => setPanel('guide')}>{t('guide')}<Icon name="arrow" size={18} /></button></section>
 
-      <Management world={world} language={language} disabled={!ready || error} commandError={commandError} command={command} request={request} focus={() => { camera.current?.focusProject(); document.querySelector('.viewport')?.scrollIntoView({ block: 'center', behavior: 'smooth' }); }} />
+      <Management world={world} language={language} disabled={!ready || error} canFocus={sceneReady && !renderError} commandError={commandError} command={command} request={request} focus={() => { camera.current?.focusProject(); document.querySelector('.viewport')?.scrollIntoView({ block: 'center', behavior: 'smooth' }); }} />
 
       <div className="city-layout">
         <section className="viewport" aria-label={t('live')}>

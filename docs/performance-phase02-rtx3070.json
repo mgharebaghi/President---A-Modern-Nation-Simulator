@@ -1,0 +1,1025 @@
+{
+  "date": "2026-10-19T16:28:25.510Z",
+  "mode": "requested D3D11 hardware renderer (verify actual renderer field)",
+  "browser": "156.0.8078.4",
+  "os": "win32 10.0.26300",
+  "cpu": "AMD Ryzen 7 5800H with Radeon Graphics         ",
+  "ramGiB": 28,
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "paused": true,
+  "completedPlant": true,
+  "notes": "6 one-second samples per quality after 2.5s warm-up. Frame time is interval mean, not p95. JS heap excludes GPU/process memory. No human performance approval implied.",
+  "measurements": [
+    {
+      "quality": "high",
+      "samples": [
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "high",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "high",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "high",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "high",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "high",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "high",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        }
+      ],
+      "jsHeapUsedBytes": 24829660
+    },
+    {
+      "quality": "medium",
+      "samples": [
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "medium",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "medium",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "medium",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "medium",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "medium",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "medium",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 138,
+            "triangles": 96862,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        }
+      ],
+      "jsHeapUsedBytes": 24236760
+    },
+    {
+      "quality": "low",
+      "samples": [
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "low",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 88,
+            "triangles": 76402,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "low",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 88,
+            "triangles": 76402,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "low",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 88,
+            "triangles": 76402,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "low",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 88,
+            "triangles": 76402,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "low",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 88,
+            "triangles": 76402,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        },
+        {
+          "project": {
+            "stage": "operational",
+            "progress": 1,
+            "structureVisible": true,
+            "scaffoldingVisible": false
+          },
+          "elapsedHours": 180,
+          "hour": 20,
+          "quality": "low",
+          "selected": null,
+          "camera": [
+            105,
+            102.00000000000001,
+            132
+          ],
+          "target": [
+            0,
+            0,
+            -6
+          ],
+          "landmarks": [
+            {
+              "id": "presidential-palace",
+              "x": 0.5400003279565471,
+              "y": 0.41293206424101503
+            },
+            {
+              "id": "civic-hospital",
+              "x": 0.3400995809313442,
+              "y": 0.4950922799576672
+            },
+            {
+              "id": "university",
+              "x": 0.5184291781361998,
+              "y": 0.6860097820109567
+            }
+          ],
+          "daylight": 0.45,
+          "lights": 3,
+          "geometries": 27,
+          "textures": 15,
+          "stats": {
+            "fps": 60,
+            "calls": 88,
+            "triangles": 76402,
+            "frameMs": 16.7
+          },
+          "pixelRatio": 1,
+          "canvas": {
+            "width": 1412,
+            "height": 633
+          },
+          "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3070 Laptop GPU (0x000024DD) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+        }
+      ],
+      "jsHeapUsedBytes": 26139212
+    }
+  ]
+}

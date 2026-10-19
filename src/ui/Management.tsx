@@ -6,13 +6,13 @@ import type { Account, PlayerCommand, SaveGame, WorldState } from '../engine/typ
 import { formatDate, formatNumber, formatTime } from '../i18n/format';
 import { translator, type Language, type MessageKey } from '../i18n/messages';
 interface Props {
-  world: WorldState; language: Language; disabled: boolean; commandError: boolean;
+  world: WorldState; language: Language; disabled: boolean; canFocus: boolean; commandError: boolean;
   command(command: PlayerCommand): void;
   request(type: 'save' | 'load', save?: SaveGame): Promise<SaveGame | undefined>;
   focus(): void;
 }
 const accountKeys: Record<Account, MessageKey> = { treasury: 'accountTreasury', private: 'accountPrivate', contractor: 'accountContractor', services: 'accountServices', utility: 'accountUtility' };
-export function Management({ world, language, disabled, commandError, command, request, focus }: Props) {
+export function Management({ world, language, disabled, canFocus, commandError, command, request, focus }: Props) {
   const t = translator(language), n = (value: number) => formatNumber(value, language);
   const [open, setOpen] = useState(false);
   const [slot, setSlot] = useState<SaveSlot | null>(null);
@@ -58,7 +58,7 @@ export function Management({ world, language, disabled, commandError, command, r
           <div><dt>{t('powerUpkeep')}</dt><dd>{n(ECONOMY.maintenance)} {t('credits')}</dd></div>
           {world.power.startedAt !== null && <div><dt>{t('remaining')}</dt><dd data-testid="remaining">{n(Math.max(0, POWER.hours - (world.elapsedHours - world.power.startedAt)))} {t('hours')}</dd></div>}
         </dl>
-        <div className="management-actions"><button className="primary-button" disabled={disabled || busy || world.power.startedAt !== null || world.finance.accounts.treasury < POWER.cost || world.elapsedHours + POWER.hours > MAX_HOURS} onClick={() => command({ type: 'build-power' })}>{t('buildPower')}</button><button className="primary-button" onClick={focus}>{t('focusProject')}</button></div>
+        <div className="management-actions"><button className="primary-button" disabled={disabled || busy || world.power.startedAt !== null || world.finance.accounts.treasury < POWER.cost || world.elapsedHours + POWER.hours > MAX_HOURS} onClick={() => command({ type: 'build-power' })}>{t('buildPower')}</button><button className="primary-button" disabled={!canFocus} onClick={focus}>{t('focusProject')}</button></div>
         {world.finance.accounts.treasury < POWER.cost && world.power.startedAt === null && <p className="deficit">{t('insufficient')}</p>}
         <p>{t('energyNote')}</p>
       </section><section><h2>{t('treasury')}</h2>

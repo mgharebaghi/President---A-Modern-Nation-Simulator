@@ -61,3 +61,15 @@ npm run measure:render -- --software  # explicitly software-rendered diagnostic
 ```
 
 Run one browser benchmark at a time, without simultaneous e2e tests or builds. JSON is written under ignored `test-results/`; copy selected results into `docs/measurements/` only when reporting them with their actual method and limitations.
+
+## Phase 02 — completed power station
+
+Measured 2026-10-19 with `npm run measure:render -- --hardware --plant`. Raw results: [performance-phase02-rtx3070.json](performance-phase02-rtx3070.json). Ryzen 7 5800H, RTX 3070 Laptop, actual ANGLE D3D11 renderer, Chromium 156.0.8078.4, Windows 10.0.26300, 1920×1080 viewport, DPR 1. The resource strip reduces scene canvas to **1412×633**, so this is not a pixel-identical phase-01 comparison. Initial camera, completed plant, paused daylight; six one-second samples after 2.5 seconds of warm-up at each quality.
+
+| Quality | FPS, all six samples | Mean frame interval | Draw calls | Triangles | Page JS heap |
+| --- | --- | --- | --- | --- | --- |
+| High | 60 | 16.7 ms | 138 | 96,862 | ~24 MiB |
+| Medium | 60 | 16.7 ms | 138 | 96,862 | ~23 MiB |
+| Low | 60 | 16.7 ms | 88 | 76,402 | ~25 MiB |
+
+No p95, mobile/integrated-GPU, long campaign, total browser/process memory or GPU-memory result is claimed. These are static scene samples on one discrete GPU, not a guarantee across devices. The phase-02 economy is small and has no measured heavy kernel workload justifying a Rust/WASM runtime. A focused screenshot of the plant has a different camera/culling result from the benchmark. Both measurement and capture automatically close their owned browser and temporary server.

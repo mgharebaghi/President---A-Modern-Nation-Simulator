@@ -1,14 +1,14 @@
 # PRESIDENT architecture
 
-## Phase 01 boundaries
+## Current boundaries
 
-- `src/engine`: DOM-free TypeScript clock kernel, command validation, calendar and serializable contracts. `simulation.worker.ts` owns authoritative world state. React and Three.js cannot mutate it.
+- `src/engine`: DOM-free TypeScript clock, treasury and construction kernel, command validation, calendar and serializable contracts. `simulation.worker.ts` owns authoritative world state. React and Three.js cannot mutate it.
 - `src/render`: Three.js scene and resource lifecycle. It consumes simulation hours and scene definitions; it never advances the simulation.
 - `src/ui`: React interface, worker adapter, camera controls, settings and bilingual guide.
 - `src/data`: authored, fictional capital landmarks and dimensions in scene meters. These are not live population or service statistics.
 - `src/i18n`: complete English/Persian messages and UTC formatting using explicit Gregorian/Persian calendars. Simulation local time uses a fixed UTC representation; the computer timezone cannot change the world date.
 
-Data flow: player control → typed worker request → validated command → kernel → snapshot/event → UI + renderer. Commands are applied synchronously within the worker. No AI executes in phase 01.
+Data flow: player control → typed worker request → validated command → kernel → snapshot/event → UI + renderer. Commands are applied synchronously within the worker. No AI executes in the current build.
 
 ## Clock
 
@@ -38,4 +38,6 @@ Do not ship a Rust/WASM runtime merely for the current integer clock: no measure
 
 ## Next contracts
 
-`WorldState`, `PlayerCommand`, `SimulationEvent`, `EngineRequest` and `EngineResponse` are internal versioned foundations, not a released mod API. Extend them in the owning phase. Phase 02 adds financial transactions, projects, capacity, versioned save serialization and IndexedDB. Subsequent systems must derive news, AI explanations and visual changes from real events. Do not add a backend, paid LLM dependency, multiplayer or a custom ECS without a separate need and scope review.
+`WorldState`, `PlayerCommand`, `SimulationEvent`, `EngineRequest` and `EngineResponse` are internal versioned foundations, not a released mod API. Extend them in the owning phase. Phase 02 implements financial transactions, a power project, capacity, versioned save serialization and IndexedDB. See [scenario and save contract](PHASE_02.md). Subsequent systems must derive news, AI explanations and visual changes from real events. Do not add a backend, paid LLM dependency, multiplayer or a custom ECS without a separate need and scope review.
+
+Phase 02 preserves the worker boundary: accounting and construction run hour by hour with midnight settlement, detached snapshots and deterministic save replay. The UI handles IndexedDB I/O and request correlation; only the worker applies a restored world. Static project geometry is created once, then visibility and height follow worker snapshots. Browsers/temporary servers have explicit owners and cleanup.
